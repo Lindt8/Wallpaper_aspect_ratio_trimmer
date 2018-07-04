@@ -39,8 +39,13 @@ def trim(im):
         return im.crop(bbox)
 
 def close_window(): #Used in GUIs
+    global mode_select, testvar
+    testvar = mode_select.get()
     root.quit()
     root.destroy()
+
+def showstr(event=None):
+    print(mode_select.get())
 
 desired_WoH_ratio = 16/9
 
@@ -59,7 +64,7 @@ newfile_path_noex = folder_is_16to9 + "\\" + filename + newfile_suffix
 im_org = Image.open(path_img)
 im = im_org.copy()
 
-use_trimmer = True
+use_trimmer = False
 if use_trimmer: im = trim(im)
 
 w, h = im.size
@@ -124,7 +129,7 @@ bt1 = ("1. Figure 1 ("+t1+" Trim)")
 bt2 = ("2. Figure 2 ("+t2+" Trim)")
 bt3 = ("3. Figure 3 ("+t3+" Trim)")
 
-#plt.ion()
+plt.ion()
 
 fig1 = plt.figure(1)
 img1 = np.asarray(im1)
@@ -147,7 +152,7 @@ fig2.tight_layout()
 fig2.canvas.set_window_title(bt3)
 plt.imshow(img2)
 
-plt.show()
+#plt.show()
 
 # GUI to ask user which image is desired
 root = Tk()
@@ -156,7 +161,7 @@ mainframe = ttk.Frame(root, padding="20 20 5 5")
 mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 mainframe.columnconfigure(0, weight=1)
 mainframe.rowconfigure(0, weight=1)
-mode_select = IntVar()
+mode_select = IntVar(master=mainframe)
 Instructions = Label(mainframe, text = "Please select which image should be saved. \n")
 Instructions.grid(column=2, row=0, sticky=(W, E), pady=5)
 rb1 = ttk.Radiobutton(mainframe,text=bt1,variable=mode_select,value=1)
@@ -181,6 +186,7 @@ root.mainloop()
 run_mode = mode_select.get()
 
 print(run_mode)
+#run_mode = 3
 
 if run_mode == 4:
     print("Save nothing.")
@@ -195,6 +201,8 @@ elif run_mode == 3:
     newfile = newfile_path_noex + "_n2.png"
     im3.save(newfile)
     
+if run_mode != 0 and run_mode != 4:
+    print("Saved new image to: "+newfile)
     
     
     
