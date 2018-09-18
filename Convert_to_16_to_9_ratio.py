@@ -202,7 +202,10 @@ elif run_mode == 3:
     im3.save(newfile)
     
 if run_mode != 0 and run_mode != 4:
-    print("Saved new image to: "+newfile)
+    try:
+        print("Saved new image to: "+newfile)
+    except:
+        print("Saved new image to:",newfile.encode("utf-8"))
     
     
     
