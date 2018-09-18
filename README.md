@@ -4,14 +4,14 @@
 
 The purpose of this package is to convert background images of width W and height H pixels to a 16:9 aspect ratio. It seeks to produce several different altered versions of the input image, and the user can then save the one(s) that are desirable.  The three options provided for each case are shown below.
 
-#### Cases for input image
+#### Cases for input image:
 
-W/H > 16/9  (x dimension must be trimmed):
+W/H > 16/9  (x dimension, W, must be trimmed)
 - Trim from left
 - Trim from right
 - Trim from both edges to keep image centered
 
-W/H < 16/9  (y dimension must be trimmed):
+W/H < 16/9  (y dimension, H, must be trimmed)
 - Trim from top
 - Trim from bottom
 - Trim from both edges to keep image centered
